@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Blazigator: Scripts</title>
+  <link rel="stylesheet" type="text/css" href="/static/built-editor.css"/>
+  <script src="/static/built-editor.min.js"></script>
+
+  <link rel="stylesheet" href=
+  "/static/bootstrap/css/bootstrap.min.css"
+  type="text/css">
+  <script src=
+  "/static/jquery.min.js"
+  type="text/javascript">
+</script>
+  <script src=
+  "/static/bootstrap/js/bootstrap.min.js"
+  type="text/javascript">
+</script>
+
+
+<script>
+
+function run(s) {
+    $.get( "/run/" + s,
+    {
+	csrfmiddlewaretoken: "{{ csrf_token }}",
+    },
+	function( data ) {
+    });
+    setTimeout(function(){
+        location.reload();
+    }, 100);
+}
+
+</script>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+  {% include "OpBoxWebsite/nav.html" %}
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <h2>Scripts</h2>
+
+        <ul class="list-group">
+          <li style="list-style: none">{% for s in scripts %}</li>
+
+          <li class="list-group-item">{{ s }} <span class=
+          "badge"><a href='/edit/{{s}}' style="color:white;">edit</a> | <a href="#" onclick="run('{{s}}')" style="color:white;">run</a></span></li>
+
+          <li style="list-style: none">{% endfor %}</li>
+	  <li class="list-group-item"><button class="btn btn-default" data-toggle="modal"
+data-target="#new_script">+new script</button>
+        </ul>
+      </div>
+      <div class="col-sm-6">
+	{% include "OpBoxWebsite/logs.html" with title=log_title %}
+      </div>
+    </div>
+
+ </div>
+    {% include "OpBoxWebsite/new_script_modal.html" with default_script="import logger, blazigator\n" %}
+
+</body>
+</html>

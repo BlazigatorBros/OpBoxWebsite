@@ -1,0 +1,39 @@
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'codemirror-5.6/lib/codemirror.css' %}" />
+
+<textarea id="code" cols="120" rows="30">
+// Here you see some JavaScript code. Mess around with it to get
+// acquainted with CodeMirror's features.
+
+// Press enter inside the object and your new line will be suitably
+// indented.
+var keyBindings = {
+  enter: "newline-and-indent",
+  tab: "reindent-selection",
+  ctrl_z: "undo",
+  ctrl_y: "redo",
+  ctrl_bracket: "highlight-brackets",
+  ctrl_shift_bracket: "jump-to-matching-bracket"
+};
+
+// Press tab on the next line and the wrong indentation will be fixed.
+      var regex = /foo|bar/i;
+
+function example(x) {
+  // Local variables get a different colour than global ones.
+  var y = 44.4;
+  return x + y - z;
+}
+</textarea>
+</div>
+
+<script type="text/javascript">
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    height: "350px",
+    content: textarea.value,
+    parserfile: ["tokenizejavascript.js", "parsejavascript.js"],
+    stylesheet: "css/jscolors.css",
+    path: "js/",
+    autoMatchParens: true
+  });
+</script>

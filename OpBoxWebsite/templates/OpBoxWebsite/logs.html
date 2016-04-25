@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{title}}</h3>
+  </div>
+  <div class="panel-body">
+    <p id="log" style="overflow-y: scroll; height:600px; white-space: pre-wrap;" />
+    <script type="text/javascript">
+        function getLogData() {
+                $.get( "/logs/{{title}}.log", function( data ) {
+                        $('#log').text(data);
+                });
+                setTimeout(getLogData, 500);
+        }
+	$(document).ready(function(){
+                getLogData();
+        });
+    </script>
+    <div class="panel-footer">
+	<a href="/logs/{{title}}.log" download>download logs</a>
+    </div>
+  </div>
+</div>

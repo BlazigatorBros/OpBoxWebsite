@@ -1,0 +1,30 @@
+<script>
+function newScriptEditor() {
+    var title = $("#new_script_title").val();
+    $.post( "/write/" + title,
+    {
+	csrfmiddlewaretoken: "{{ csrf_token }}",
+	src: "{{default_script}}"
+    },
+	function( data ) {
+		location.reload();
+    });
+}
+
+</script>
+
+          <div id="new_script" class="modal fade" role="dialog" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <input id="new_script_title" type="text" class="form-control" value="new_script.py">
+                            <span class="input-group-btn">
+                              <button class="btn btn-default" type="button"  onclick="newScriptEditor()">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                              </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+           </div>

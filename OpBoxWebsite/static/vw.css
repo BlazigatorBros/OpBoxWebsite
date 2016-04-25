@@ -1,0 +1,27 @@
+#vw {
+  text-align: center;
+  border: 2.5px #FF6AD5;
+  border-style: solid;
+  border-radius: 0;
+  padding: 3%;
+  margin: 10%;
+  background: #C774E8;
+  
+  /* #3 */
+  outline: 3px solid #AD8CFF;
+  
+  /* #4 AND INFINITY!!! (CSS3 only) */
+  box-shadow:
+      0 0 0 5px #8795E8,
+      0 0 0 10px #94D0FF,
+      0 0 0 15px #8795E8,
+      0 0 0 20px #AD8CFF,
+      0 0 0 25px #C774E8,
+      0 0 0 30px #FF6AD5,
+      0 0 0 35px #C774E8,
+      0 0 0 40px #AD8CFF,
+      0 0 0 45px #8795E8,
+      0 0 0 50px #94D0FF,
+      0 55px 60px -10px black;
+    ;      
+}
