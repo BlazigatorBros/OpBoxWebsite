@@ -109,6 +109,16 @@ def rm(request, title):
 
     return redirect('/scripts')
 
+def manualOverride(request):
+
+    auth_check = auth(request)
+    if auth_check:
+        return auth_check
+
+    #todo: rexec, or manualy parse instead of being lazy.
+    exec("blazigator." + request.GET["src"])
+    return HttpResponse("swag")
+
 def home(request):
 
     context = {

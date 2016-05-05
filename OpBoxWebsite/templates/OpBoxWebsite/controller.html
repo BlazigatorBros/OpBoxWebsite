@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Blazigator: Scripts</title>
+  <link rel="stylesheet" type="text/css" href="/static/built-editor.css"/>
+  <script src="/static/built-editor.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/static/vw.css"/>
+  <link rel="stylesheet" href=
+  "/static/bootstrap-3.3.5-dist/css/bootstrap.min.css"
+  type="text/css">
+  <script src=
+  "/static/jquery.min.js"
+  type="text/javascript">
+</script>
+  <script src=
+  "/static/bootstrap-3.3.5-dist/js/bootstrap.min.js"
+  type="text/javascript">
+</script>
+  <script src="/static/konami.js"></script>
+
+  <script>
+  function command(s) {
+
+	$.get( "/override?src=" + s,
+		function( data ) {}
+	);
+  }
+  </script>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+  {% include "OpBoxWebsite/nav.html" %}
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="container">
+
+        <h2 id="title">Manual Override</h2>
+        <script>`
+		var easter_egg = new Konami();
+		easter_egg.code = function() { 
+			$("#vw").show(); 
+		        var audio = new Audio('/static/mp.mp3');
+			audio.play()	
+                        $("#title").text("M A N U A L / モニター");
+			$("body").attr("class","vw_body");
+			}
+		easter_egg.load();
+        </script>
+ 
+	<div id="vw" hidden>
+	    <img src="/static/tumblr_niuvswQhD71toe0eco1_500.gif"/>
+	</div>
+
+    <div class="row">
+      <div class="col-sm-4">
+	<h3>lever 0</h3>
+        <div class="btn-group btn-group-justified">
+		<span class="btn btn-primary" onClick="command('lever_0.extend()')">extend</span>
+		<span class="btn btn-primary" onClick="command('lever_0.retract()')">retract</span>
+	</div>
+
+	<h3>lever 1</h3>
+ 	<div class="btn-group btn-group-justified">
+		<span class="btn btn-primary" onClick="command('lever_1.extend()')">extend</span>
+		<span class="btn btn-primary" onClick="command('lever_1.retract()')">retract</span>
+	</div>
+
+	<h3>Liquid Reqard</h3>
+
+                        <div class="input-group">
+                            <input id="duration" type="text" class="form-control" value="20">
+                            <span class="input-group-btn">
+                              <button class="btn btn-default" type="button"  onclick="command('liquid_dispenser.dispense(' + $('#duration').val() +')')")>
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                              </button>
+                            </span>
+                        </div>
+
+      </div>
+	<div class="col-sm-6">
+
+        <ul class="list-group">
+          <li style="list-style: none">{% for c in cameras %}</li>
+
+          <li class="list-group-item">
+		<iframe align="center" width="820" height="528" scrolling="yes" frameborder="0"  src="{{c}}"></iframe>
+	  </li>
+
+          <li style="list-style: none">{% endfor %}</li>
+ 
+        </ul>
+
+
+	</div>
+      </div>
+  
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/static/jquery.min.js"
+    type="text/javascript"></script> 
+     <!-- Include all compiled plugins (below), or include individual files as needed -->
+     <script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>
