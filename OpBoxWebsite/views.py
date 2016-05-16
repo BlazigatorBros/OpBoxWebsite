@@ -109,7 +109,7 @@ def rm(request, title):
 
     return redirect('/scripts')
 
-def manualOverride(request):
+def controller(request):
 
     auth_check = auth(request)
     if auth_check:

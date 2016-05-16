@@ -1,3 +1,9 @@
 [submodule "OpBoxWebsite/OpBoxLib"]
 	path = OpBoxWebsite/OpBoxLib
 	url = https://github.com/BlazigatorBros/OpBoxLib.git
+[submodule "OpBoxWebsite/scripts/OpBox"]
+	path = OpBoxWebsite/scripts/OpBox
+	url = https://github.com/BlazigatorBros/OpBox.git
+[submodule "OpBoxWebsite/scripts/OpBoxLib"]
+	path = OpBoxWebsite/scripts/OpBoxLib
+	url = https://github.com/BlazigatorBros/OpBoxLib.git
