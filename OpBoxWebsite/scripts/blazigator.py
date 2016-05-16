@@ -4,7 +4,6 @@ from OpBoxLib.smokedispenser import SmokeDispenser
 from OpBoxLib.lever import Lever
 from OpBoxLib.fan import Fan
 from OpBoxLib.eye import Eye
-from OpBoxLib.motiondetector import MotionDetector
 
 import time
 
