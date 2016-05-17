@@ -2,6 +2,9 @@ import time
 from serial import Serial
 
 class OpBox:
+    """
+        Represents the op-box controller and the collection of modules attached to it
+    """
 
     port = "/dev/ttyACM0"
     baudrate = 9600
