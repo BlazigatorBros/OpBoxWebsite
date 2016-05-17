@@ -3,7 +3,11 @@ from django.shortcuts import render
 from scripts.logger import Logger
 from scriptmanager import ScriptManager
 from django.shortcuts import redirect
+import scripts.blazigator as blazigator
+import urllib
 import settings
+import inspect
+import ast
 import os
 
 DEFAULT_SCRIPT = """import blazigator, logger
@@ -109,15 +113,81 @@ def rm(request, title):
 
     return redirect('/scripts')
 
-def controller(request):
+def moduleView(request):
 
     auth_check = auth(request)
     if auth_check:
         return auth_check
 
-    #todo: rexec, or manualy parse instead of being lazy.
-    exec("blazigator." + request.GET["src"])
-    return HttpResponse("swag")
+    modTree = dict()
+    modTree["name"] = "Blazigator"
+    modTree["doc"] = blazigator.__doc__
+
+    #assumption: members start with lower-case, classes start with upper-case
+    safe_member_keys = [key for key in blazigator.__dict__.keys()
+                if not (key.startswith("__") 
+                        or inspect.isclass(blazigator.__dict__[key])
+                        or inspect.ismodule(blazigator.__dict__[key])
+                )
+        ]
+
+    getFunTree = lambda obj: [{"name": f, "doc": getattr(obj, f).__doc__}
+                                for f in dir(obj) 
+                                if (callable(getattr(obj, f))
+                                        and not f.startswith("__")
+                                )
+        ]
+
+    safe_members = [{"name": key,
+                "doc": blazigator.__dict__[key].__doc__,
+                "functions": getFunTree(blazigator.__dict__[key])}
+                for key in safe_member_keys
+              ]
+
+    modTree["members"] = safe_members
+
+    context = {
+        "cameras" : settings.CAMERA_URLS,
+        "modTree" : modTree
+    }
+
+    return render(request, 'OpBoxWebsite/ModuleView.html', context)
+
+def runFunction(request, module_key, function_key):
+
+    auth_check = auth(request)
+    if auth_check:
+        return auth_check
+
+    #assumption: members start with lower-case, classes start with upper-case
+    safe_member_keys = [key for key in blazigator.__dict__.keys()
+                if not (key.startswith("__") 
+                        or inspect.isclass(blazigator.__dict__[key])
+                        or inspect.ismodule(blazigator.__dict__[key])
+                )
+        ]
+
+    if not module_key in safe_member_keys:
+        return HttpResponse("naw bro", status =403)
+
+    module = blazigator.__dict__[module_key]
+    safe_function_keys = [f for f in dir(module) 
+                                if (callable(getattr(module, f))
+                                        and not f.startswith("__")
+                                )
+        ]
+
+    if not function_key in safe_function_keys:
+        return HttpResponse("naw bro", status =403)
+
+    ScriptManager.current_script_name = "None.py"
+    ScriptManager.run("None.py")
+
+    args = ast.literal_eval(urllib.unquote(request.GET['args']))
+    if args:
+            return HttpResponse(getattr(module, function_key)(args))
+    else:
+            return HttpResponse(getattr(module, function_key)())
 
 def home(request):
 

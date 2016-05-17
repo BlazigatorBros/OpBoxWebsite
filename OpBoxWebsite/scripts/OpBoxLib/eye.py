@@ -2,8 +2,8 @@ from module import Module
 
 class Eye(Module):
     """
-        Breakbeam sensor
-        """
+Breakbeam sensor
+    """
 
     callback = "Beam broken"
     state_command = "beam_state"
@@ -13,9 +13,10 @@ class Eye(Module):
 
     def getState(self):
         """
-        check state of breakbeam and return true if broken
+check state of breakbeam 
+and return true if broken
 
-        Arguments: None
+Arguments: None
         """
         self.parent.serialWrite(
                 Eye.state_command

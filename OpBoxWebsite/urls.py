@@ -18,7 +18,8 @@ urlpatterns = patterns('',
     url(r'^rm/(?P<title>[\w.]{0,256})', views.rm, name='rm'),
     url(r'^edit/(?P<title>[\w.]{0,256})', views.edit, name='edit'),
     url(r'^write/(?P<title>[\w.]{0,256})', views.write, name='write'),
-    url(r'^controller/(?P<title>[\w.]{0,256})', views.controller, name='controller'),
+    url(r'^ModuleView/', views.moduleView, name='moduleView'),
+    url(r'^runfunction/(?P<module_key>[\w.]{0,256})/(?P<function_key>[\w.]{0,256})', views.runFunction, name='runFunction'),
     url(r'^$', views.home, name='home')
 
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Blazigator: Scripts</title>
+  <link rel="stylesheet" type="text/css" href=
+  "/static/built-editor.css">
+  <script src="/static/built-editor.min.js" type="text/javascript">
+</script>
+  <link rel="stylesheet" href=
+  "/static/bootstrap/css/bootstrap.min.css" type="text/css">
+  <script src="/static/jquery.min.js" type="text/javascript">
+</script>
+  <script src="/static/bootstrap/js/bootstrap.min.js" type=
+  "text/javascript">
+</script>
+  <style type="text/css">
+.panel-heading a:after {
+    font-family:'Glyphicons Halflings';
+    content:"\e114";
+    float: right;
+    color: white;
+  }
+  .panel-heading a.collapsed:after {
+    content:"\e080";
+  } 
+  </style>
+</head>
+
+<body>
+  <script type="text/javascript">
+
+  function run(s) {
+    $.get( "/run/" + s,
+    {
+        csrfmiddlewaretoken: "{{ csrf_token }}",
+   },
+        function( data ) {
+    });
+    setTimeout(function(){
+        location.reload();
+    }, 100);
+  }
+
+  </script>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  {% include "OpBoxWebsite/nav.html" %}<br>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="panel panel-default" id="accordion">
+          <div class="panel panel-heading">
+            <h2>{{ modTree.name }} Attributes</h2>
+          </div>
+
+          <div class="panel-body">
+            <pre>
+        {{modTree.doc}}
+        
+</pre><br>
+            {% for m in modTree.members %}
+
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <a data-toggle="collapse" data-target=
+                "#collapse{{m.name}}" class="collapsed" href=
+                "#collapse{{m.name}}"><font color=
+                "white">{{m.name}}</font></a>
+              </div>
+
+              <div id="collapse{{m.name}}" class=
+              "panel-collapse collapse">
+                <div class="panel-body">
+                  <pre>
+{{m.doc}}
+</pre><br>
+                  {% for f in m.functions %}
+
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      {{f.name}}
+                    </div>
+
+                    <div class="panel-body">
+                      <pre>
+{{f.doc}}
+</pre><br>
+
+                      <div class="input-group">
+                        <input type="text" class="form-control" id=
+                        "args-{{m.name}}-{{f.name}}" placeholder=
+                        "{{f.name}}() arguments"> 
+
+			<span class= "input-group-btn">
+				<button class="btn btn-default" type="button" id=
+                        "{{m.name}}-{{f.name}}-button">exec</button>
+			<script type="text/javascript">
+
+                                                        $("#{{m.name}}-{{f.name}}-button").on('click', function(event) {
+                                                                $.get("/runfunction/{{m.name}}/{{f.name}}?args='" 
+                                                                        + $("#args-{{m.name}}-{{f.name}}").val() + "'", 
+                                                                function(data) {
+                                                                        $("#{{m.name}}-{{f.name}}Textarea").val(data);
+                                                                });
+                                                        });
+                        </script></span></button></span>
+                      </div>
+                      <hr>
+                      <textarea class="form-control" id=
+                      "{{m.name}}-{{f.name}}Textarea" rows="3">
+</textarea>
+                    </div>
+                  </div>{% endfor %}
+                </div>
+              </div>
+            </div>{% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel panel-heading">
+            Monitor
+          </div>
+
+          <div class="panel-body">
+            <ul class="list-group">
+              {% for c in cameras %}
+
+              <li class="list-group-item"><iframe align="center"
+              width="820" height="528" scrolling="yes" frameborder=
+              "0" src="{{c}}"></iframe></li>
+
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

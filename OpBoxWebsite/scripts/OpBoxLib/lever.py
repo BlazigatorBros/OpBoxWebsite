@@ -2,7 +2,7 @@ from module import Module
 
 class Lever(Module):
     """
-    Controlls and montors lever
+Controlls and montors lever
     """
 
     extend_command = "lever_out"
@@ -16,9 +16,9 @@ class Lever(Module):
 
     def extend(self):
         """
-        extends lever into box
+extends lever into box
 
-        Arguments: None
+Arguments: None
         """
         self.parent.serialWrite(
                 Lever.extend_command
@@ -30,9 +30,9 @@ class Lever(Module):
 
     def retract(self):
         """
-        Retracts lever out of box
+Retracts lever out of box
 
-        Arguments: None
+Arguments: None
         """
         self.parent.serialWrite(
                 Lever.retract_command
@@ -44,9 +44,9 @@ class Lever(Module):
 
     def getState(self):
         """
-        Gets state of lever switch and returns true if lever is depressed.
+Gets state of lever switch and returns true if lever is depressed.
 
-        Arguments: None
+Arguments: None
         """
         self.parent.serialWrite(
                 Lever.state_command

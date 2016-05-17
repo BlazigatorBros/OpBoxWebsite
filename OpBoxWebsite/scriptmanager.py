@@ -5,7 +5,7 @@ import settings
 class ScriptManager:
 
     script_dir = settings.SCRIPTS_DIR
-    exclude = ["logger.py", "scriptmanager.py", "__init__.py"]
+    exclude = ["blazigator.py", "logger.py", "scriptmanager.py", "__init__.py", "None.py"]
     current_script_name = None
 
     @staticmethod

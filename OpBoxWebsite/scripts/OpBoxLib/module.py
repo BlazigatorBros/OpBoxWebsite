@@ -13,27 +13,27 @@ class Module(object):
 
     def setParent(self, parent):
         """
-        assigns an OpBox instance to this module
+assigns an OpBox instance to this module
 
-        Arguments:
-        parent -- the OpBox instance this module is attached to
+Arguments:
+parent -- the OpBox instance this module is attached to
         """
         self.parent = parent
 
     def setCallbackFunction(self, function):
         """
-        sets the callback function to be called when this module is interacted with
+sets the callback function to be called when this module is interacted with
 
-        Arguments:
-        function -- callback function
+Arguments:
+function -- callback function
         """
         self.callback_function = function
 
     def executeCallbackFunction(self):
         """
-        if this module is enabled, the callback function will be executed.
+if this module is enabled, the callback function will be executed.
 
-        Arguments: None
+Arguments: None
         """
 
         if self.wakeup_time:
@@ -46,19 +46,19 @@ class Module(object):
 
     def enable(self):
         """
-        Overide disable timer and enable module now
+Overide disable timer and enable module now
 
-        Argurments: None
+Argurments: None
         """
         self.enabled = True
 
     def disable(self, duration = None):
         """
-        Disables callback function, if duration is given, module is re-enabled after a set amout of time
+Disables callback function, if duration is given, module is re-enabled after a set amout of time
 
-        Arguments:
-        duration -- default value: None
-                if this is a number, the module is enabled after this much time (sec)  has passed
+Arguments:
+duration -- default value: None
+     if this is a number, the module is enabled after this much time (sec)  has passed
         """
         self.enabled = False
 

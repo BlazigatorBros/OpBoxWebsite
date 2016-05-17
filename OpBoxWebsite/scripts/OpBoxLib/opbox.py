@@ -3,7 +3,7 @@ from serial import Serial
 
 class OpBox:
     """
-        Represents the op-box controller and the collection of modules attached to it
+Represents the op-box controller and the collection of modules attached to it
     """
 
     port = "/dev/ttyACM0"
@@ -17,7 +17,10 @@ class OpBox:
 
     def waitForModule(self, *modules):
         """
-        polls untill one of the modules callbacks are called
+polls untill one of the modules callbacks are called
+
+Arguments:
+modules -- module or list of modles to poll
         """
 
         callbacks = [m.callback for m in modules]
@@ -31,9 +34,11 @@ class OpBox:
 
     def poll(self):
         """
-        returns the next line read from the serial port
-        who is not assoicated with a callback function
-        executing relivant callbacks along the way.
+returns the next line read from the serial port
+who is not assoicated with a callback function
+executing relivant callbacks along the way.
+
+Arguments: None
         """
 
         #get next response that is not from an interupt
@@ -45,7 +50,9 @@ class OpBox:
 
     def debug(self):
 	"""
-	Returns debug information
+Returns debug information from the controller
+
+Arguments: None
 	"""
 
         self.serialWrite("debug\n")
@@ -53,7 +60,10 @@ class OpBox:
 
     def attach(self, module):
 	"""
-	attach a new module to the box
+attach a new module to the box
+
+Arguments:
+module -- module intstance to be attached
 	"""
 
         module.setParent(self)
@@ -62,7 +72,10 @@ class OpBox:
 
     def callback(self, response):
 	"""
-	go through the list of callbacks and execute if applicable
+go through the list of callbacks and execute if applicable
+
+Arguments:
+responce -- string read from serial port (from op-box controller)
 	"""
 
         command = response.split(",")[0]
@@ -72,12 +85,24 @@ class OpBox:
         else: return False
 
     def serialWrite(self, command):
-            time.sleep(.2)
-            self.serial.setDTR(level=1) 
-            time.sleep(.2)
-            self.serial.write(command)
+        """
+Writes command to serial port (to op-box controller)
+
+Arguments:
+command -- newline-terminated string to be sent to op-box controller
+        """
+        time.sleep(.2)
+        self.serial.setDTR(level=1) 
+        time.sleep(.2)
+        self.serial.write(command)
 
     def getTimestamp(self):
+        """
+        returns the amout if time (MS) that the op-box controller has been
+running.
+
+Arguments: None
+        """
 
         self.serialWrite("time\n")
         return int(self.poll())

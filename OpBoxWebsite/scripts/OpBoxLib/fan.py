@@ -2,8 +2,8 @@ from module import Module
 
 class Fan(Module):
     """
-        Exaust fan controll
-        """
+Exaust fan controll
+    """
 
     callback = "FanCallback"
     get_speed_command = "get_speed"
@@ -14,10 +14,10 @@ class Fan(Module):
 
     def setSpeed(self, rpm):
         """
-        Set speed of exaust fans
+Set speed of exaust fans
 
-        Arguments:
-        rpm -- speed, in rotations-per-minute
+Arguments:
+rpm -- speed, in rotations-per-minute
         """
         self.parent.serialWrite(
                 Fan.set_speed_command
@@ -29,9 +29,9 @@ class Fan(Module):
 
     def getSpeed(self):
         """
-        Get speed of exaust fan, in RMP
+Get speed of exaust fan, in RMP
 
-        Arguments: none
+Arguments: none
         """
         self.parent.serialWrite(
                 Fan.get_speed_command

@@ -2,7 +2,7 @@ from module import Module
 
 class LiquidDispenser(Module):
     """
-        Retuns liquid reward dispencer solinoid
+Retuns liquid reward dispencer solinoid
     """
 
     callback = "LiquidDispenserCallback"
@@ -13,10 +13,10 @@ class LiquidDispenser(Module):
 
     def dispense(self, duration):
         """
-        Opens liquid reward solinoid for a set ammount of time
+Opens liquid reward solinoid for a set ammount of time
 
-        Argumrnts:
-        duration -- amount of time (ms) that solinoid remains open
+Argumrnts:
+duration -- amount of time (ms) that solinoid remains open
         """
         self.parent.serialWrite(
                 LiquidDispenser.dispense_command 

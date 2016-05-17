@@ -1,10 +1,12 @@
+"""Contains all modules
+attached to our op box"""
+
 from OpBoxLib.opbox import OpBox
 from OpBoxLib.liquiddispenser import LiquidDispenser
 from OpBoxLib.smokedispenser import SmokeDispenser
 from OpBoxLib.lever import Lever
 from OpBoxLib.fan import Fan
 from OpBoxLib.eye import Eye
-
 import time
 
 op_box = OpBox()
