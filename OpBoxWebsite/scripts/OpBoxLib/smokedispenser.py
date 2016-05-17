@@ -2,9 +2,9 @@ from module import Module
 import time
 
 class SmokeDispenser(Module):
-        """
-        controlls smoke emitter
-        """
+    """
+    controlls smoke emitter
+    """
 
     callback = "ERROR_SMOKER_EMPTY"
     burn_command = "burn"

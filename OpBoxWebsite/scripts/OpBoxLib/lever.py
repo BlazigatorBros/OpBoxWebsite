@@ -1,9 +1,9 @@
 from module import Module
 
 class Lever(Module):
-        """
-        Controlls and montors lever
-        """
+    """
+    Controlls and montors lever
+    """
 
     extend_command = "lever_out"
     retract_command = "lever_in"
