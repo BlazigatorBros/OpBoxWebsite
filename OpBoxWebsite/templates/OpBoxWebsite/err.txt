@@ -1,0 +1,37 @@
+line 29 column 1 - Warning: plain text isn't allowed in <head> elements
+line 4 column 1 - Info: <head> previously mentioned
+line 29 column 1 - Warning: inserting implicit <body>
+line 30 column 1 - Warning: <style> isn't allowed in <body> elements
+line 29 column 1 - Info: <body> previously mentioned
+line 63 column 1 - Warning: </head> isn't allowed in <body> elements
+line 29 column 1 - Info: <body> previously mentioned
+line 65 column 1 - Warning: discarding unexpected <body>
+line 100 column 129 - Warning: inserting implicit <span>
+line 100 column 129 - Warning: replacing unexpected button by </button>
+line 100 column 49 - Warning: missing </button>
+line 68 column 3 - Warning: missing </div>
+line 7 column 3 - Warning: <meta> proprietary attribute "charset"
+line 7 column 3 - Warning: <meta> lacks "content" attribute
+line 15 column 3 - Warning: <script> inserting "type" attribute
+line 42 column 1 - Warning: <script> inserting "type" attribute
+line 83 column 25 - Warning: <a> proprietary attribute "data-toggle"
+line 83 column 25 - Warning: <a> proprietary attribute "data-target"
+line 86 column 25 - Warning: <div> attribute "id" has invalid value "collapse{{m.name}}"
+line 98 column 41 - Warning: <input> attribute "id" has invalid value "args-{{m.name}}-{{f.name}}"
+line 98 column 41 - Warning: <input> proprietary attribute "placeholder"
+line 100 column 49 - Warning: <button> attribute "id" has invalid value "{{m.name}}-{{f.name}}-button"
+line 101 column 49 - Warning: <script> inserting "type" attribute
+line 113 column 41 - Warning: <textarea> attribute "id" has invalid value "{{m.name}}-{{f.name}}Textarea"
+Info: Document content looks like HTML Proprietary
+21 warnings, 0 errors were found!
+
+You are recommended to use CSS to specify the font and
+properties such as its size and color. This will reduce
+the size of HTML files and make them easier to maintain
+compared with using <FONT> elements.
+
+To learn more about HTML Tidy see http://tidy.sourceforge.net
+Please fill bug reports and queries using the "tracker" on the Tidy web site.
+Additionally, questions can be sent to html-tidy@w3.org
+HTML and CSS specifications are available from http://www.w3.org/
+Lobby your company to join W3C, see http://www.w3.org/Consortium

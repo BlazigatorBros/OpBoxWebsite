@@ -101,6 +101,7 @@ STATICFILES_DIRS = (
 
 CAMERA_URLS = (
        "http://192.168.2.3:8081/",
+       "http://www.westinnewyorktimessquareview.com/en/embed/camera"
 )
 
 SCRIPTS_DIR =  os.path.join(BASE_DIR, "OpBoxWebsite/scripts/")
