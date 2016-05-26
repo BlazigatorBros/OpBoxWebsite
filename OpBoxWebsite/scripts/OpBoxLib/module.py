@@ -1,4 +1,5 @@
 from serial import Serial
+import time
 
 class Module(object):
 
