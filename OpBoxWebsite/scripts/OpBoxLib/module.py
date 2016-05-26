@@ -42,7 +42,7 @@ Arguments: None
                 self.wakeup_time = None
 
         if self.enabled:
-            self.callback_function()
+            getattr(self, callback_function)()
 
     def enable(self):
         """
